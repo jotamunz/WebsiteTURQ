@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+$poppins: 'Poppins', sans-serif;
+$white: rgba(
+  $color: #ffffff,
+  $alpha: 0.87,
+);
+$black: #121212;
+$sand: #fdf1d7;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  font-family: $poppins;
+}
+
+h1 {
+  font-weight: bold;
+  color: $white;
+}
+
+h2 {
+  font-weight: bold;
+  color: $black;
+}
+
+.btn {
+  text-decoration: none;
+  font-weight: medium;
+  background: $white;
+  color: #035584;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+@mixin wide-container($left) {
+  @if $left {
+    justify-content: right;
+    padding-right: 3rem;
+    padding-left: 4rem;
+  } @else {
+    justify-content: left;
+    padding-left: 3rem;
+    padding-right: 4rem;
+  }
+}
+
+@mixin narrow-container() {
+  justify-content: center;
+  padding: 0 2rem;
+}
+
+/* Wide screen */
+@media screen and (min-width: 950px) {
+  h1 {
+    font-size: 6rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  .btn {
+    font-size: 1.5rem;
+  }
+  section.about {
+    flex-direction: row;
+  }
+  .about-image-container {
+    @include wide-container($left: true);
+  }
+  .about-text-container {
+    @include wide-container($left: false);
+  }
+  .about-text {
+    font-size: 1.15rem;
+  }
+  .navbar-list {
+    max-width: 40rem;
+  }
+}
+
+/* Narrow screen */
+@media screen and (max-width: 950px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  .btn {
+    font-size: 0.8rem;
+  }
+  section.about {
+    flex-direction: column;
+  }
+  .about-image-container {
+    @include narrow-container;
+  }
+  .about-text-container {
+    @include narrow-container;
+    margin-top: 1rem;
+  }
+  .about-text {
+    font-size: 0.75rem;
+  }
+  .navbar-list {
+    max-width: 30rem;
+  }
+}
+
+section.landing {
+  width: 100%;
+  height: 95vh;
+  overflow: hidden;
+  background: $sand;
+}
+
+section.landing div {
+  position: absolute;
+}
+
+.landing {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sky {
+  height: 50%;
+  width: 100%;
+  background: linear-gradient(to bottom, #037ccb 0%, #82ccef 100%);
+}
+
+.sea {
+  height: 30%;
+  width: 200%;
+  left: -50%;
+  top: 50%;
+  border-radius: 0 0 50% 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 122, 193, 1) 0%,
+    rgba(18, 156, 192, 1) 25%,
+    rgba(42, 212, 229, 1) 50%,
+    rgba(150, 233, 239, 1) 75%,
+    rgba(222, 236, 211, 1) 100%
+  );
+  animation: waveanim ease-in-out 10s;
+  animation-iteration-count: infinite;
+  transform-origin: 50% 0%;
+  overflow: hidden;
+}
+
+.seafoam {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 90%,
+    white 100%
+  );
+  animation: seafoamanim ease-in-out 10s;
+  animation-iteration-count: infinite;
+}
+
+.wet-sand {
+  height: 37.5%;
+  width: 200%;
+  left: -50%;
+  top: 50%;
+  border-radius: 0 0 50% 50%;
+  background: #ecc075;
+  box-shadow: 0 10px 10px 0 #ecc075;
+  animation: wetsandanim ease-in-out 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes waveanim {
+  0% {
+    transform: scaleY(1);
+  }
+  35% {
+    transform: scaleY(1.3);
+  }
+  69% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes wetsandanim {
+  0% {
+    opacity: 0.2;
+  }
+  34% {
+    opacity: 0.2;
+  }
+  35% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes seafoamanim {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.title-container {
+  display: flex;
+  width: 100%;
+  z-index: 99;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+@mixin max-width-responsive() {
+  max-width: 30rem;
+  width: 100%;
+  height: auto;
+}
+
+@mixin section() {
+  width: 100%;
+  height: 100%;
+  background: $sand;
+  display: flex;
+  padding-top: 2vh;
+}
+
+section.about {
+  @include section;
+  justify-content: center;
+
+  p {
+    color: $black;
+    font-weight: medium;
+  }
+}
+
+.about-image-container {
+  display: flex;
+  align-items: center;
+}
+
+.about-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-image {
+  @include max-width-responsive;
+  border-radius: 8px;
+}
+
+.about-text {
+  @include max-width-responsive;
+  margin-top: 0.5rem;
+}
+
+.about-title {
+  @include max-width-responsive;
+}
+
+.navbar {
+  @include section;
+  padding: 4vh 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-list {
+  height: 100%;
+  width: 100%;
+  padding: 0 3rem;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  list-style: none;
+}
+
+.navbar-item {
+  color: $black;
+}
+
+.navbar-facebook {
+  @extend .navbar-item;
+  &:hover {
+    color: #4267b2;
+  }
+}
+
+.navbar-twitter {
+  @extend .navbar-item;
+  &:hover {
+    color: #1da1f2;
+  }
+}
+
+.navbar-instagram {
+  @extend .navbar-item;
+  &:hover {
+    color: #e1306c;
+  }
+}
+
+.navbar-tiktok {
+  @extend .navbar-item;
+  &:hover {
+    color: #ff0050;
+  }
+}
+
+.navbar-spotify {
+  @extend .navbar-item;
+  &:hover {
+    color: #1db954;
+  }
+}
+
+.navbar-apple {
+  @extend .navbar-item;
+  &:hover {
+    color: #fc3c44;
+  }
+}
+
+.navbar-youtube {
+  @extend .navbar-item;
+  &:hover {
+    color: #ff0000;
+  }
+}
+
+.navbar-soundcloud {
+  @extend .navbar-item;
+  &:hover {
+    color: #f26f23;
+  }
+}
+
+.navbar-bandcamp {
+  @extend .navbar-item;
+  &:hover {
+    color: #629aa9;
+  }
+}
